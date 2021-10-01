@@ -41,13 +41,13 @@ async function getCountryById (req, res, next) {
     const {data} = await axios.get("https://restcountries.com/v3/all");
     const cInfo = data.map(c => {
         return {
-            name: c.name.official,
+            name: c.name.common,
             flag: c.flags[0],
             continent: c.region,
-            capital:c.capital[0],
-            subregion:c.subregion,
+            capital: c.capital && c.capital[0] || null ,
+            subregion:c.subregion || null,
             area:c.area,
-            code: c.cca3||c.cioc
+            code:c.cca3
         }
     })
 
