@@ -12,9 +12,8 @@ function SearchBar () {
    
 
     function handleChange(e) {
-        e.preventDefault()
-        setName(e.target.value)
-        
+        e.preventDefault();
+        setName(e.target.value);
     }
 
     function handleName(e) {
@@ -35,7 +34,7 @@ function SearchBar () {
         <div>
             <span >
             <label>search by name: </label>
-            <input  type='text' placeholder='arg / china / france' 
+            <input  type='text' placeholder='argentina / china / france' 
             value = {name} onChange={handleChange} onKeyDown={handleKey}></input>
             <button type='submit' onClick={handleName}>🌎</button>
             </span>

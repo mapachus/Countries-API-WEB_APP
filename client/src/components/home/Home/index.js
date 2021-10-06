@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
-import { getByContinent, getCountries, orderByAlphabet, orderByArea } from '../../../redux/actions';
+import { getByContinent, getCountries, orderByAlphabet, orderByArea, getActivities, getByActivity } from '../../../redux/actions';
 
 import Card from '../Card';
 import Paginado from '../Paginado';
@@ -11,8 +11,9 @@ import SearchBar from '../SearchBar';
 
 export default function Home() {
 
-    const dispatch = useDispatch();
-    const allCountries = useSelector((state) => state.countries);
+const dispatch = useDispatch();
+const allCountries = useSelector((state) => state.countries);
+const allActivities = useSelector((state) => state.activities.map(a=> a.name));
 
 const [currentPage, setCurrentPage] = useState(1);
 const [countriesPerPage, setCountriesPerPage] = useState(9);
@@ -25,6 +26,10 @@ const [order, setOrder] = useState('');
     useEffect (() => {
         dispatch(getCountries());
         },[dispatch])
+
+    useEffect(() => {
+        dispatch(getActivities())
+        }, [dispatch]);
 
     const paginado = (pageNumber) => {
         setCurrentPage(pageNumber);
@@ -48,6 +53,18 @@ const [order, setOrder] = useState('');
             setCurrentPage(1);
             setOrder(`Ordenado ${e.target.value}`);
             };
+        function handleReset (e) {
+            e.preventDefault();
+            dispatch(getCountries());
+            setCurrentPage(1);
+            }
+        
+        function handleActivities (e) {
+            console.log("dispatch act", e.target.value);
+            e.preventDefault();
+            dispatch(getByActivity(e.target.value));
+            setCurrentPage(1);
+             }
     
     return(
         <div>
@@ -75,7 +92,18 @@ const [order, setOrder] = useState('');
                     <option value="Antarctic"> Antarctica </option>
                     <option value="Europe"> Europe </option>
                     <option value="Oceania"> Oceania </option>
+        </select>
+        <select 
+                 onChange={handleActivities}>
+                   <option> ACTIVITIES </option>
+                    {
+                        allActivities.map(a => (
+                            <option value={a}>{a}</option>
+                        ))
+                    }
                 </select> 
+            <button onClick={handleReset} >Reset</button>
+            <Link to='/Add'> <button>Add Activity</button></Link> 
         </div>
         {page?.map((c) => {
         return(

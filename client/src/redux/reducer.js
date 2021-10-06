@@ -1,9 +1,11 @@
-import { GET_COUNTRIES, GET_BY_NAME, ORDER_BY_ALPHABET, ORDER_BY_AREA, GET_BY_CONTINENT, GET_BY_ID} from "./actions";
+import { GET_COUNTRIES, GET_BY_NAME, ORDER_BY_ALPHABET, ORDER_BY_AREA,
+   GET_BY_CONTINENT, GET_BY_ID, POST_ACTIVITY, GET_ACTIVITIES, GET_BY_ACTIVITY} from "./actions";
 
 const initialState = {
   countries: [],
   countriesMain: [],
-  details: []
+  details: [],
+  activities: []
 
   } ;
 
@@ -16,13 +18,13 @@ function rootReducer (state = initialState, action) {
         countriesMain: action.payload
     }  
     case GET_BY_NAME:
-      return {
+    return {
         ...state,
         countries: action.payload
       }
-      case ORDER_BY_ALPHABET:
-        const countryOrder = action.payload === 'Asc' ?
-        state.countriesMain.sort(function(a, b) {
+    case ORDER_BY_ALPHABET:
+      const countryOrder = action.payload === 'Asc' ?
+      state.countriesMain.sort(function(a, b) {
             if(a.name > b.name) {
                 return 1;
             }
@@ -40,11 +42,11 @@ function rootReducer (state = initialState, action) {
             }
             return 0;
         });
-        return {
+    return {
             ...state,
             countries: countryOrder
         }
-        case ORDER_BY_AREA:
+    case ORDER_BY_AREA:
         const areaOrder = action.payload === 'bArea' ?
         state.countriesMain.sort(function(a, b) {
             if(a.area > b.area) {
@@ -64,22 +66,47 @@ function rootReducer (state = initialState, action) {
             }
             return 0;
         });
-        return {
+    return {
             ...state,
             countries: areaOrder
-        }
-        case GET_BY_CONTINENT:
+           }
+    case GET_BY_CONTINENT:
         const continent = state.countriesMain.filter(c => c.continent === action.payload);
-        return {
+    return {
            ...state,
            countries: continent
-        }
-        case GET_BY_ID:
+           }
+    case GET_BY_ID:
           console.log("reducer id", action.payload)
-          return {
+    return {
             ...state,
             details: action.payload
           }
+    case POST_ACTIVITY:
+    return {
+            ...state
+           }
+    case GET_ACTIVITIES:
+    return {
+            ...state,
+            activities: action.payload
+          }
+    case GET_BY_ACTIVITY:
+        console.log("reducer act payload", action.payload);
+        const countryActivities = state.countriesMain.filter(c => c.activities.length);
+        const activity = [];
+        for (var i = 0; i < countryActivities.length; i++) {
+            for ( var j = 0; j < countryActivities[i].activities.length; j++) {
+            if (countryActivities[i].activities[j].name === action.payload) {
+                activity.push(countryActivities[i])
+            }
+            }
+        }
+        console.log("reducer act activity arr", activity)
+    return {
+            ...state,
+            countries: activity
+            }
     default:
     return state;   
   }
