@@ -71,6 +71,11 @@ function rootReducer (state = initialState, action) {
             countries: areaOrder
            }
     case GET_BY_CONTINENT:
+        if (action.payload === "all") {
+            return {
+                ...state,
+            }
+        }
         const continent = state.countriesMain.filter(c => c.continent === action.payload);
     return {
            ...state,
@@ -92,7 +97,11 @@ function rootReducer (state = initialState, action) {
             activities: action.payload
           }
     case GET_BY_ACTIVITY:
-        console.log("reducer act payload", action.payload);
+        if (action.payload === "all") {
+            return {
+                ...state,
+            }
+        }
         const countryActivities = state.countriesMain.filter(c => c.activities.length);
         const activity = [];
         for (var i = 0; i < countryActivities.length; i++) {
@@ -102,7 +111,6 @@ function rootReducer (state = initialState, action) {
             }
             }
         }
-        console.log("reducer act activity arr", activity)
     return {
             ...state,
             countries: activity

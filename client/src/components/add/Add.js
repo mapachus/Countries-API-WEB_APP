@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import { postActivity, getCountries } from '../../redux/actions';
+import styles from './add.module.css';
 
 
 export default function Add () {
@@ -17,6 +18,8 @@ const [input, setInput] = useState({
         countries: []
     });
 
+const [visibility, setVisibilty ] = useState(false)
+
     function handleChange(e) {
         setInput({
             ...input,
@@ -24,13 +27,11 @@ const [input, setInput] = useState({
         });
     };
 
-
+    
 
     function handleSubmit(e) {
-        console.log("dispatch", input)
         e.preventDefault();
         dispatch(postActivity(input))
-        alert("Activity added!")
         setInput({
             name: '',
             difficulty: '',
@@ -45,73 +46,79 @@ const [input, setInput] = useState({
         dispatch(getCountries());
     }, [dispatch])
 
-  
+    function handleRemove (e) {
+        setInput({
+          ...input,
+          countries: input.countries.filter(el => el !== e )
+        })
+      }
+      
 
     return(
-        <div>
+        <div className={styles.background}>
             <h2 >Add Activity</h2>
-            <form  onSubmit={handleSubmit} >
-                <div>
+            <form  className = {styles.form} onSubmit={handleSubmit} >
+                <div className = {styles.divs}>
                     <label>Name:</label>
                     <div>
-                    <input type='text' value={input.name} name='name'
+                    <input className={styles.inputs} type='text' value={input.name} name='name'
                       required="required" onChange={handleChange}>  
                     </input>
                     </div>
                 </div>
-                <div>
+                <div className = {styles.divs}>
                     <label>difficulty:</label>
                     <div>
-                    <input  type='number' min="1" max="5" value={input.difficulty} name='difficulty'
+                    <input className={styles.inputs}  type='number' min="1" max="5" value={input.difficulty} name='difficulty'
                      required="required" placeholder="1-5" onChange={handleChange}>  
                     </input>
                     </div>
                 </div>
-                <div >
+                <div className = {styles.divs}>
                     <label>duration:</label>
                     <div>
-                    <input type='number' min="1" value={input.duration} name='duration'
+                    <input className={styles.inputs} type='number' min="1" value={input.duration} name='duration'
                       required="required" placeholder="minutes" onChange={handleChange}>  
                     </input>
                     </div>
                 </div>
-                <div >
+                <div className = {styles.divs}>
                     <label>season:</label>
                     <div>
-                    <input type='text' value={input.season} name='season'
+                    <input className={styles.inputs} type='text' value={input.season} name='season'
                       required="required" placeholder="Summer, Autumn, Winter, Spring" onChange={handleChange}>  
                     </input>
                     </div>
                 </div>
-                {/* <div >
-                <label>image:</label>
-                <div>
-                <input  type="text" value={input.image} name="image" 
-                 required="required" placeholder="paste url here" onChange={handleChange}/>
-                </div>
-                </div> */}
-                 <div>
+             
+                 <div className = {styles.divs}>
                  <label>countries:</label>
                  </div>
                  <div>
-                {input.countries.map((c) => <p> {c}</p>)}
-                <select  onChange={(e) => setInput({...input, countries: [...input.countries,e.target.value]})}  >
+                {input.countries.map((c) => 
+                <div>  
+                 {c}  <button className={styles.button2} onClick ={() => handleRemove(c)}>x</button>
+                </div>)}
+                <select  onChange={(e) => setInput({...input, countries: [...input.countries,e.target.value]})}  className={styles.inputs}>
                     {
                         allCountries.map(c => (
-                           
-                            <option value={c.name}> {c.name} </option>
-                            
+                            <option className={styles.inputs} value={c.name}> {c.name} </option>
                         ))
                     }
                 </select>
                 </div> 
                 <div>
-                <button  type='submit' value="submit" 
-                disabled={!(input.name && input.difficulty  && input.duration && input.season && input.countries)}
-                >Add</button>
+                <button className={styles.button} onClick = {()=>setVisibilty(true)} type='submit' value="submit" disabled = 
+                {!(input.name && input.difficulty  && input.duration && input.season && input.countries)}>
+                Add</button> 
                 </div> 
+                { visibility ? 
+                <div>
+                <h6> Tourist Activity Added !</h6> 
+                </div>
+                : null }
                <div>
-              <Link to ='/home'> <button > Home </button></Link>
+              <Link to ='/home'> <button className={styles.button}> Home </button></Link>
             </div>
          </form>
         </div>

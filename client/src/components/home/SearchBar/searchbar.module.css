@@ -1,0 +1,32 @@
+.search {
+    position: relative;
+    margin-right: 100px;
+    margin-left: 100px;
+    margin-top: 50px;
+    
+    }
+    
+
+    .button {
+        margin: 1px;
+        background-color: #393E46;
+        width:30px;
+        margin: 3px;
+       
+    }
+    
+    .button:hover {
+        background-color: #00ADB5;
+        width: 60px;
+        
+     
+    }
+    
+    .inputs {
+        background-color: rgb(197, 191, 191);
+        margin: 3px;
+    }
+    
+    .inputs:hover {
+        background-color: rgb(231, 226, 226);
+    }

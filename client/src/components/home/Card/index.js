@@ -1,15 +1,18 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+import styles from './card.module.css'
+
 
 
 function Card ({name, continent, image, area, code}) {
   
     return(
-        <div >
+       <div className = {styles.card}>
+    
             <h4>{name}</h4>
             <Link to={'/details/' + code}>
-           <img src={image} alt="" width='300px' height='200px'/>
+           <img  className = {styles.img} src={image} alt="" /> 
             </Link>
            <h5>{area} km2</h5>
           

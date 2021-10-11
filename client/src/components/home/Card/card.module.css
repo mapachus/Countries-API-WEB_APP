@@ -1,0 +1,36 @@
+.card {
+    border: 5px solid #00ADB5;
+    border-radius: 35px;
+    display:row;
+    flex-flow: column wrap;
+    background-color:#3f434b ;
+    height: 410px;
+    width: 385px;
+  }
+
+  .card:hover {
+    background-color: #adabab ;
+    color:rgb(65, 64, 64);
+  }
+
+  .img{
+    width: 60%;
+    height: 140px;
+    border: 5px solid;
+    border-radius: 100px;
+    border-color: #00ADB5;
+    margin: 1px;
+    align-self: center;
+  }
+
+  .img:hover{
+    width: 85%;
+    height: 148px;
+    border: 3px solid;
+    border-radius: 50px;
+    border-color: #00ADB5;
+    margin: 1px;
+    align-self: center;
+  }
+
+

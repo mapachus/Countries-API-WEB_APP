@@ -8,6 +8,7 @@ import { getByContinent, getCountries, orderByAlphabet, orderByArea, getActiviti
 import Card from '../Card';
 import Paginado from '../Paginado';
 import SearchBar from '../SearchBar';
+import styles from './home.module.css';
 
 export default function Home() {
 
@@ -67,51 +68,52 @@ const [order, setOrder] = useState('');
              }
     
     return(
-        <div>
-        <div>
+        <div className={styles.all}>
+        <div  className={styles.searchbar}>
+      
         <SearchBar/>
         <label>filter by:</label>
-        <select 
+        <select  className={styles.inputs}
                  onChange={handleAlphabet}>
-                    <option value='Asc' > ALPHABET  </option>
-                    <option value='Asc'>A - Z</option>
-                    <option value='Desc'>Z - A</option>
+                    <option className={styles.inputs} value='Asc' > ALPHABET  </option>
+                    <option className={styles.inputs} value='Asc'>A - Z</option>
+                    <option className={styles.inputs} value='Desc'>Z - A</option>
         </select>
-        <select 
+        <select  className={styles.inputs}
                  onChange={handleArea}>
-                    <option value='sArea'> AREA </option>
-                    <option  value='bArea'>Smaller</option>
-                    <option  value='sArea'>Bigger</option>
+                    <option className={styles.inputs} value='sArea'> SIZE </option>
+                    <option className={styles.inputs} value='bArea'>Smaller</option>
+                    <option className={styles.inputs} value='sArea'>Bigger</option>
         </select>
-        <select 
+        <select  className={styles.inputs}
                 onChange={handleContinent} >
-                    <option> CONTINENT </option>
-                    <option value="Africa">Africa</option>
-                    <option value="Americas">America</option>
-                    <option value="Asia"> Asia </option>
-                    <option value="Antarctic"> Antarctica </option>
-                    <option value="Europe"> Europe </option>
-                    <option value="Oceania"> Oceania </option>
+                    <option className={styles.inputs} value="all" > CONTINENT </option>
+                    <option className={styles.inputs} value="Africa">Africa</option>
+                    <option className={styles.inputs} value="Americas">America</option>
+                    <option className={styles.inputs} value="Asia"> Asia </option>
+                    <option className={styles.inputs} value="Antarctic"> Antarctica </option>
+                    <option className={styles.inputs} value="Europe"> Europe </option>
+                    <option className={styles.inputs} value="Oceania"> Oceania </option>
         </select>
-        <select 
+        <select  className={styles.inputs}
                  onChange={handleActivities}>
-                   <option> ACTIVITIES </option>
+                   <option value="all" className={styles.inputs}> ACTIVITIES </option>
                     {
                         allActivities.map(a => (
-                            <option value={a}>{a}</option>
+                            <option className={styles.inputs} value={a}>{a}</option>
                         ))
                     }
                 </select> 
-            <button onClick={handleReset} >Reset</button>
-            <Link to='/Add'> <button>Add Activity</button></Link> 
+            <button className={styles.button} onClick={handleReset} >Reset</button>
+            <Link to='/Add'> <button className={styles.button2} >Add Activity</button></Link> 
         </div>
         {page?.map((c) => {
         return(
-            <div >
+            <div className={styles.cards}>
             <Card name={c.name} image={c.flag} continent={c.continent} area={c.area} code={c.code}key={c.id}></Card>
             </div>
         )})}
-        <div>
+        <div className={styles.paginas}>
         <Paginado paginado={paginado} 
          allCountries={allCountries.length} countriesPerPage={countriesPerPage}
         ></Paginado>

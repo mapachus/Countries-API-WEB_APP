@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 
 import { getByName } from '../../../redux/actions';
+import styles from './searchbar.module.css';
 
 
 function SearchBar () {
@@ -32,11 +33,10 @@ function SearchBar () {
 
     return (
         <div>
-            <span >
-            <label>search by name: </label>
-            <input  type='text' placeholder='argentina / china / france' 
+            <span className = {styles.search}>
+            <input  className={styles.inputs} type='text' placeholder='argentina / china / france ' 
             value = {name} onChange={handleChange} onKeyDown={handleKey}></input>
-            <button type='submit' onClick={handleName}>🌎</button>
+            <button  className={styles.button} type='submit' onClick={handleName}>🔍</button>
             </span>
               
         </div>
