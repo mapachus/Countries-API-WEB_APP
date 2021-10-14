@@ -1,0 +1,73 @@
+h1 {
+    font-family: 'Source Code Pro';
+    font-weight: 400;
+}
+
+h2 {
+    font-family: 'Source Code Pro';
+    font-weight: 300;
+}
+
+h3 {
+    font-family: 'Source Code Pro';
+    font-weight: 400;
+    font-style: italic;
+}
+
+h4 {
+    font-family: 'Source Code Pro';
+    font-weight: 300;
+}
+
+h4 {
+    font-family: 'Source Code Pro';
+    font-weight: 300;
+}
+
+.bcolor { 
+    background-color:rgb(4, 0, 10);
+    width: 100%;
+    height: 777px;
+    position: absolute;
+    margin-top: 0px;
+}
+
+.color {
+    color: rgb(160, 160, 160);
+    padding-top: 30px;
+    padding-bottom: 50px;
+}
+
+
+.color2 { 
+    color: rgb(172, 172, 172);
+    padding: 50px;
+}
+
+.img {
+border-radius: 100px;
+width: 40%;
+}
+
+.logo {
+    width: 30px;
+    height: 30px;
+    animation-duration: 9s;
+    animation-name: logo;
+}
+
+@keyframes logo {
+    0% {
+      width: 1px;
+      height: 1px;
+    }
+  
+    50% {
+        width: 25px;
+        height: 25px;
+    }
+    100% {
+      width: 60px;
+      height: 60px;
+    }
+  }

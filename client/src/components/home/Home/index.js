@@ -72,7 +72,7 @@ const [order, setOrder] = useState('');
         <div  className={styles.searchbar}>
       
         <SearchBar/>
-        <label>filter by:</label>
+        <label className={styles.label}>filter by:</label>
         <select  className={styles.inputs}
                  onChange={handleAlphabet}>
                     <option className={styles.inputs} value='Asc' > ALPHABET  </option>
@@ -110,7 +110,7 @@ const [order, setOrder] = useState('');
         {page?.map((c) => {
         return(
             <div className={styles.cards}>
-            <Card name={c.name} image={c.flag} continent={c.continent} area={c.area} code={c.code}key={c.id}></Card>
+            <Card name={c.name} image={c.flag} continent={c.continent} population={c.population} code={c.code} key={c.id}></Card>
             </div>
         )})}
         <div className={styles.paginas}>

@@ -1,4 +1,4 @@
-import React, { useEffect, useState} from 'react';
+import React, { useEffect} from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from 'react-router-dom';
 
@@ -11,8 +11,6 @@ export default function Details (props) {
     const dispatch = useDispatch();
     const {id} = props.match.params;
     const details = useSelector((state) => state.details);
-    console.log("details", details)
-
     
     useEffect(() => {
         dispatch(getById(id))
@@ -25,34 +23,44 @@ export default function Details (props) {
          { details? 
          <div>
                 <div>
-                <h1>{details.name}</h1>
+                <h1 className={styles.color}>{details.name}</h1>
                 </div>
+                <a href= {details.map}> Map </a>
                 <div  >
-                <img className = {styles.img} src={details.flag}  alt="Not found"></img>
+                <img className = {styles.img} src={details.flag}  alt="Flag not found"></img>
                 </div>
                 <div  className = {styles.border}>
-                <h5>capital</h5>
-                <h4>{details.capital}</h4>
-                <h5>continent</h5>
-                <h4>{details.continent}</h4>
-                <h5>subcontinent</h5>
-                <h4>{details.subregion}</h4>
-                <h5>area</h5>
-                <h4>{details.area} Km2</h4>
+                <h4>capital</h4>
+                <h3>{details.capital}</h3>
+                <h4>continent</h4>
+                <h3>{details.continent}</h3>
+                <h4>subcontinent</h4>
+                <h3>{details.subregion}</h3>
+                <h4>area</h4>
+                <h3>{details.area} Km2</h3>
+                
                 </div>
-                <h2>Tourist Activities</h2>
+                <div> 
+                </div>
+                <h1 className={styles.color}>Tourist Activities</h1>
                 <div>
                 { (details.activities && details.activities.length) ?
                 details.activities.map(e => (
                 <div className = {styles.border2}>
                 <span>
-                <h5>{e.name}</h5>
-                <h6>duration:</h6>
-                <h5>{e.duration} minutes</h5>
-                <h6>level of difficulty (1-5):</h6>
-                <h5>{e.difficulty}</h5>
-                <h6>preferable season:</h6>
-                <h5>{e.season}</h5>
+                <h2 >{e.name}</h2>
+                <div >
+                <h5 className={styles.position}>duration:</h5>
+                <h3 className={styles.position}>{e.duration} minutes</h3>
+                </div>
+                <div>
+                <h5 className={styles.position}>level of difficulty (1-5):</h5>
+                <h3 className={styles.position}>{e.difficulty}</h3>
+                </div>
+                <div>
+                <h5 className={styles.position}>preferable season:</h5>
+                <h3 className={styles.position}>{e.season}</h3>
+                </div>
                 </span>
                 </div>
                 ))

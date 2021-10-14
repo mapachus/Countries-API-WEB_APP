@@ -11,6 +11,8 @@
 .border:hover {
     background-color: #adabab ;
     color:rgb(65, 64, 64);
+    width: 900px;
+    height: 400px;
       }
     
     
@@ -49,5 +51,16 @@
 
 .img {
     margin: 50px;
-    width: 55%;
+    width: 45%;
+    height: 12%;
+}
+
+.color {color: rgb(160, 160, 160);}
+
+
+.color2 { color: rgb(172, 172, 172);}
+
+.position {
+    display: inline-block;
+    margin: 10px;
 }

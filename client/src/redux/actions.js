@@ -46,7 +46,6 @@ export function orderByArea(payload) {
 
 
 export function getByContinent(payload) {
-    
     return async function(dispatch) {
         return dispatch ({ 
         type : GET_BY_CONTINENT,
@@ -55,11 +54,9 @@ export function getByContinent(payload) {
     }
 }
 export function getById(id) {
-    console.log("action id ", id)
     return async function(dispatch) {
         let json = await axios.get('http://localhost:3001/countries/' + id);
         json = json.data
-        console.log("action id json", json)
         return dispatch({
             type: GET_BY_ID,
             payload: json
@@ -68,12 +65,17 @@ export function getById(id) {
    };
 };
 export function postActivity(payload) {
-    return async function(dispatch) {
-        const json = await axios.post('http://localhost:3001/activities', payload)
+    return (dispatch) => {
+         axios.post('http://localhost:3001/activities', payload)
+         .then(response =>{
         return  dispatch({
             type: POST_ACTIVITY
         });
-    };
+    })
+    .catch((err)=>{
+        console.log(err)
+    })
+  }
 };
 export function getActivities() {
     return async function(dispatch) {
@@ -85,7 +87,6 @@ export function getActivities() {
     };
 };
 export function getByActivity(payload) {
-    console.log("action act", payload)
     return async function(dispatch) {
         return dispatch ({ 
         type : GET_BY_ACTIVITY,

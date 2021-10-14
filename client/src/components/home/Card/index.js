@@ -5,18 +5,22 @@ import styles from './card.module.css'
 
 
 
-function Card ({name, continent, image, area, code}) {
+function Card ({name, continent, image, population, code, key}) {
+
+    population = population/1000000
+
   
     return(
        <div className = {styles.card}>
-    
-            <h4>{name}</h4>
+            <h2>{name}</h2>
             <Link to={'/details/' + code}>
            <img  className = {styles.img} src={image} alt="" /> 
             </Link>
-           <h5>{area} km2</h5>
-          
-            <h6>{continent}</h6> 
+            <h3>{continent}</h3>
+            <div>
+            <h3 className={styles.margin}>{population}</h3>
+            <h4 className={styles.margin2}>million people</h4>
+            </div>
         </div>
     )
 }

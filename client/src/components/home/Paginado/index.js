@@ -15,7 +15,7 @@ return(
         <span>
         { pageNumbers && 
         pageNumbers.map(number =>(
-        <button className={styles.button} href onClick={() => paginado(number)}>{number}</button>
+        <button className={styles.button} key={number} onClick={() => paginado(number)}>{number}</button>
         ))}
         </span>
         </nav>

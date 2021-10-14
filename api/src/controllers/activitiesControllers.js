@@ -22,12 +22,7 @@ async function getActivity (req, res) {
  async function addActivity(req, res) { 
 	 
 	     let { name, difficulty, duration, season, countries} = req.body;
-		 console.log("body", req.body)
-		 console.log(countries, "countries")
-		 
-		 console.log(countries[0], "country index 0")
-		 console.log(countries[1], "country index 1")
-	 
+	
 	     let [newActivity, created] = await Activity.findOrCreate({
 		         where: { name: name }, defaults: {
 			             difficulty: difficulty,
@@ -35,11 +30,7 @@ async function getActivity (req, res) {
 			             season: season
 			         }
 			     });
-
-		console.log("newA", newActivity)
-				
-			 
-			 
+		 
 			     try {
 				         countries.map(async (c) => {
 					             try {
@@ -64,40 +55,3 @@ async function getActivity (req, res) {
 			getActivity
 		}
 		
-		
-		
-		
-		
-		// const { Country, Activity} = require("../db");
-		
-		
-		
-		//  async function addActivity (req, res) {
-			// 	const activity = req.body;
-			// 	console.log("body", req.body)
-			// 	console.log("activity.countries", activity.countries)
-			// 	const activityCreated = await Activity.create({
-				// 		name: activity.name,
-				// 		difficulty: activity.difficulty,
-				// 		duration: activity.duration,
-				// 		season: activity.season,
-				// 	});
-				
-				
-				// 	if (activity.countries) {
-					// 		console.log("activity.countries", activity.countries)
-					// 		let activityCountries = activity.countries.split(',');
-					// 		console.log("actCountries", activityCountries)
-					// 		activityCountries.map(async (c) => {
-						// 			let country = await Country.findOne({
-							// 	        where: { name: c } });
-							// 			await country.addActivity([activityCreated]);
-							// 		});
-							// 	}
-							// 	res.send(activityCreated);
-							// };
-							
-							// module.exports = {
-							// 	addActivity,
-							// 	getActivity
-							// };

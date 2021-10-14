@@ -9,10 +9,12 @@ try {
            name: c.name.common,
            flag: c.flags[1],
            continent: c.region,
-           capital:c.capital && c.capital[0] || null ,
-           subregion:c.subregion || null,
-           area:c.area,
-           code:c.cca3
+           capital: c.capital && c.capital[0] || null ,
+           subregion: c.subregion || null,
+           area: c.area,
+           code: c.cca3,
+           population: c.population,
+           map: c.maps.googleMaps
        }
    })
    
@@ -22,7 +24,7 @@ try {
     where: {
      
     },
-    attributes: ["name", "flag", "continent", "capital", "subregion","area","code"],
+    attributes: ["name", "flag", "continent", "capital", "subregion","area","code","population","map"],
     include: Activity
     });
 
@@ -54,7 +56,7 @@ async function getCountryById (req, res, next) {
             where: {
               code: id
             },
-            attributes: ["name", "flag", "continent", "capital", "subregion","area","code"],
+            attributes: ["name", "flag", "continent", "capital", "subregion","area","code", "map"],
             include: Activity
             });
              return res.send(countryDetail);

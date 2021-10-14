@@ -82,7 +82,6 @@ function rootReducer (state = initialState, action) {
            countries: continent
            }
     case GET_BY_ID:
-          console.log("reducer id", action.payload)
     return {
             ...state,
             details: action.payload

@@ -18,15 +18,15 @@ module.exports = (sequelize) => {
     },
     capital: {
       type: DataTypes.STRING,
-      
     },
     subregion: {  
       type: DataTypes.STRING,
-     
     }, 
+    population: {
+      type: DataTypes.FLOAT,
+    },
     area: {
       type: DataTypes.FLOAT,
-     
     },
     id:{
       type: DataTypes.STRING,
@@ -35,6 +35,9 @@ module.exports = (sequelize) => {
     },
     code:{
       type: DataTypes.STRING(3),
-    }
+    },
+    map: {
+      type: DataTypes.STRING,
+    },
   });
 };

@@ -34,7 +34,7 @@ function SearchBar () {
     return (
         <div>
             <span className = {styles.search}>
-            <input  className={styles.inputs} type='text' placeholder='argentina / china / france ' 
+            <input  className={styles.inputs} type='text' placeholder=' Brazil / China / France  🌎' 
             value = {name} onChange={handleChange} onKeyDown={handleKey}></input>
             <button  className={styles.button} type='submit' onClick={handleName}>🔍</button>
             </span>

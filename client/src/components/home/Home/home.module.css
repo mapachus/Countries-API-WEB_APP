@@ -27,7 +27,7 @@ body {
     background-color: rgb(165, 161, 161);
     margin: 5px 10px;
     height: 19px;
-    width: 99px;
+    width: 101px;
 }
 
 .inputs:hover {
@@ -70,3 +70,7 @@ body {
     margin-bottom: 0;
     size: 100px;
   }
+
+.label {
+    margin: 1px;
+}
